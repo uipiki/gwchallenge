@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Gwchallenge</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+<head>
+  <%= render :partial => 'layouts/shared/script' %>
+  <title>Gwchallenge</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <% if controller.controller_name != 'session' %>
+    <%= render :partial => 'layouts/shared/header' %>
+  <% end %>
+</head>
+<body>
+<%= yield %>
+</body>
+<%= render :partial => 'layouts/shared/footer' %>
 </html>

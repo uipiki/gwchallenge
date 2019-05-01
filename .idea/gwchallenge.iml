@@ -703,6 +703,33 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="mysql2 (vbundled(0.5.2)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/spec" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/support" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/examples" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/spec" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/support" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/examples" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/spec" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/support" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/examples" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="nio4r (vbundled(2.3.1)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="3" />
@@ -1239,6 +1266,21 @@
         </CLASSES>
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/uglifier-4.1.20/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="uikit-sass-rails (vbundled(1.4.1)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/uikit-sass-rails-1.4.1/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/uikit-sass-rails-1.4.1/vendor" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/uikit-sass-rails-1.4.1/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.5.0/gems/uikit-sass-rails-1.4.1/vendor" />
         </SOURCES>
       </library>
     </orderEntry>
