@@ -1,0 +1,7 @@
+view:
+  user:
+    new:
+      target:
+        - A
+        - B
+    test: 'おけ'

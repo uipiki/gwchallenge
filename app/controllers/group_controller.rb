@@ -1,4 +1,4 @@
 class GroupController < ApplicationController
-  def create
+  def new
   end
 end

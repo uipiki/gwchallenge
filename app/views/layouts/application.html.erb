@@ -12,5 +12,7 @@
 <body>
 <%= yield %>
 </body>
-<%= render :partial => 'layouts/shared/footer' %>
+<% if controller.controller_name != 'session' %>
+  <%= render :partial => 'layouts/shared/footer' %>
+<% end %>
 </html>
