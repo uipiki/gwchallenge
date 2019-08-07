@@ -4,6 +4,7 @@ class ConditionController < ApplicationController
   end
 
   def calc
-
+    p params
+    render json: {success: params} and return
   end
 end

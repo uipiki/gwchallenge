@@ -1,8 +1,14 @@
-<%= render :partial => 'condition/_partial/wind_component', locals: {wind: "ton", wind_caption: "東"} %>
-<%= render :partial => 'condition/_partial/wind_component', locals: {wind: "nan", wind_caption: "南"} %>
-<%= render :partial => 'condition/_partial/wind_component', locals: {wind: "sya", wind_caption: "西"} %>
-<%= render :partial => 'condition/_partial/wind_component', locals: {wind: "pe", wind_caption: "北"} %>
-<%= render :partial => 'condition/_partial/additional_info' %>
+<form method="get" id="conditions" action="/condition/calc">
+  <div class="uk-container uk-container-small uk-position-relative">
+    <form class="uk-grid-small uk-margin-bottom" uk-grid>
+    </form>
+  </div>
+  <%= render :partial => 'condition/_partial/wind_component', locals: {wind: "ton", wind_caption: "東"} %>
+  <%= render :partial => 'condition/_partial/wind_component', locals: {wind: "nan", wind_caption: "南"} %>
+  <%= render :partial => 'condition/_partial/wind_component', locals: {wind: "sya", wind_caption: "西"} %>
+  <%= render :partial => 'condition/_partial/wind_component', locals: {wind: "pe", wind_caption: "北"} %>
+  <%= render :partial => 'condition/_partial/additional_info' %>
+</form>
 <div class="uk-margin uk-container uk-container-small uk-position-relative">
-<button class="uk-button uk-button-secondary uk-width-1-1">計算する</button>
+  <button class="uk-button uk-button-secondary uk-width-1-1" type="submit" form="conditions">計算する</button>
 </div>
