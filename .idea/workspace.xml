@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81dcadcd-477f-49ec-95ee-a2d11ad83c2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/condition/_partial/_condition_table_body.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/condition/_partial/_condition_table_header.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/condition/_partial/_wind_record.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/condition/condition.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/condition_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/condition_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/condition_calculate_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/condition_calculate_service.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/condition/_partial/_additional_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/condition/_partial/_additional_info.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/condition/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/condition/information.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/condition/_partial/_condition_table_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/condition/_partial/_condition_table_header.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/condition/_partial/_wind_record.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/condition/_partial/_wind_record.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/condition/information.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/condition/information.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/shared/_footer.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/shared/_footer.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -39,7 +34,7 @@
         <counts>
           <entry key="Gemfile" value="3" />
           <entry key="css" value="2" />
-          <entry key="erb" value="42" />
+          <entry key="erb" value="44" />
           <entry key="gitignore" value="1" />
           <entry key="js" value="6" />
           <entry key="rb" value="34" />
@@ -52,7 +47,7 @@
           <entry key="CSS" value="2" />
           <entry key="JavaScript" value="6" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="RHTML" value="42" />
+          <entry key="RHTML" value="44" />
           <entry key="Ruby" value="37" />
           <entry key="SCSS" value="2" />
           <entry key="YAML" value="2" />
@@ -61,7 +56,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Gemfile" value="8" />
-          <entry key="erb" value="1380" />
+          <entry key="erb" value="1430" />
           <entry key="gitignore" value="1" />
           <entry key="js" value="3" />
           <entry key="rb" value="1369" />
@@ -73,7 +68,7 @@
         <counts>
           <entry key="JavaScript" value="3" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="RHTML" value="1380" />
+          <entry key="RHTML" value="1430" />
           <entry key="Ruby" value="1377" />
           <entry key="SCSS" value="1" />
           <entry key="YAML" value="51" />
@@ -88,15 +83,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
               <caret line="9" column="108" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="108" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/condition_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -120,6 +106,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="48" lean-forward="true" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/condition/_partial/_condition_table_body.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
@@ -132,7 +127,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/condition/_partial/_wind_record.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -140,8 +135,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/condition/_partial/_condition_table_header.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+            <state relative-caret-position="30">
+              <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/shared/_footer.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="91" lean-forward="true" selection-start-column="68" selection-end-column="91" />
             </state>
           </provider>
         </entry>
@@ -149,8 +153,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/condition/information.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="105" />
+            <state relative-caret-position="45">
+              <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -160,15 +164,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
               <caret line="19" column="84" selection-start-line="19" selection-start-column="84" selection-end-line="19" selection-end-column="84" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/service/condition_calculate_service.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -216,9 +211,7 @@
         <option value="$PROJECT_DIR$/config/application.rb" />
         <option value="$PROJECT_DIR$/app/views/user/entry.html.erb" />
         <option value="$PROJECT_DIR$/app/views/group/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/shared/_footer.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb" />
         <option value="$PROJECT_DIR$/app/views/condition/_partial/_wind_component.html.erb" />
         <option value="$PROJECT_DIR$/app/views/condition/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/condition/_partial/_additional_info.html.erb" />
@@ -226,8 +219,11 @@
         <option value="$PROJECT_DIR$/app/controllers/condition_controller.rb" />
         <option value="$PROJECT_DIR$/app/service/condition_calculate_service.rb" />
         <option value="$PROJECT_DIR$/app/views/condition/condition.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/condition/_partial/_condition_table_header.html.erb" />
         <option value="$PROJECT_DIR$/app/views/condition/_partial/_condition_table_body.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/condition/_partial/_condition_table_header.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/shared/_footer.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/condition/information.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb" />
         <option value="$PROJECT_DIR$/app/views/condition/_partial/_wind_record.html.erb" />
       </list>
     </option>
@@ -297,6 +293,21 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="condition" type="462c0819:PsiDirectoryNode" />
               <item name="_partial" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gwchallenge" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gwchallenge" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gwchallenge" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gwchallenge" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gwchallenge" type="b2602c69:ProjectViewProjectNode" />
@@ -474,12 +485,12 @@
       <workItem from="1556559346005" duration="559000" />
       <workItem from="1556559954964" duration="15178000" />
       <workItem from="1565020736152" duration="4561000" />
-      <workItem from="1565190913251" duration="4138000" />
+      <workItem from="1565190913251" duration="4651000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24436000" />
+    <option name="totallyTimeSpent" value="24949000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -643,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/shared/_footer.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="91" selection-start-column="91" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/group/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -702,13 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="30" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/rubystubs25/basic_object.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -751,6 +748,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/condition/_partial/_condition_table_header.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/shared/_footer.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="91" lean-forward="true" selection-start-column="68" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/condition/condition.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -760,15 +771,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/condition/information.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/condition/_partial/_condition_table_header.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        <state relative-caret-position="45">
+          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -779,10 +783,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="48" lean-forward="true" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/condition/_partial/_wind_record.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
         </state>
       </provider>
     </entry>
