@@ -32,10 +32,16 @@ class ConditionCalculateService
 
 
   def require_conditions
+    ron_conditions = {}
+    tumo_conditions = {}
     @point_status.each do |wind_type, point|
-      get_ron_condition(wind_type, @point_status, @deposit, @stage_count, @exisiting_total)
-      get_tumo_condition(wind_type, @point_status, @deposit, @stage_count, @exisiting_total)
+      ron_conditions[wind_type] = get_ron_condition(wind_type, @point_status, @deposit, @stage_count, @exisiting_total)
+      tumo_conditions[wind_type] = get_tumo_condition(wind_type, @point_status, @deposit, @stage_count, @exisiting_total)
     end
+    return {
+        ron: ron_conditions,
+        tumo: tumo_conditions
+    }
   end
 
   #
@@ -48,7 +54,7 @@ class ConditionCalculateService
         move_point = point + stage_count * 100
         tumoed_status = tumo_by_parent(status, move_point, deposit)
         if totaltop?(wind, tumoed_status, exisiting_total)
-          write_message(wind, others_wind, point, @finish_type.tumo)
+          return point.to_s + " all"
           break
         end
       end
@@ -57,6 +63,7 @@ class ConditionCalculateService
         tumoed_status = tumo_by_child(wind, status, stage_count, deposit, point_hash)
         if totaltop?(wind, tumoed_status, exisiting_total)
           write_message(wind, others_wind, point, @finish_type::TUMO)
+          return point_hash.ko.to_s + "-" + point_hash.oya.to_s
           break
         end
       end
@@ -97,10 +104,12 @@ class ConditionCalculateService
   # @param [Integer] status 状況
   # @param [Integer] deposit 供託
   # @param [Integer] stage_count 本場
-  # @param [Map] 上がる前のトータルポイント状況
+  # @param [Map<String, Map<String, Integer>>] 上がる前のトータルポイント状況
   #
   def get_ron_condition(wind, status, deposit, stage_count, exisiting_total)
     hand_points = get_hand_points(wind, @finish_type.ron)
+    result = {}
+    conditions = {}
     # 他家の出上がり条件探すためのループ
     status.each do |others_wind, others_point|
       # 自分にロンはできないので次へ
@@ -112,14 +121,13 @@ class ConditionCalculateService
         move_point = point + (300 * stage_count)
         ronned_status = after_ron_status(wind, others_wind, status, move_point, deposit)
         if totaltop?(wind, ronned_status, exisiting_total)
-          # write_message(wind, others_wind, point, type)
+          conditions[others_wind] = point
         end
       end
     end
+    result[wind] = conditions
   end
-
-  def write_message(wind, others_wind, point, type)
-  end
+  
 
   def after_ron_status(wind, others_wind, status, move_point, deposit)
     my_point = status[wind] + move_point + deposit
@@ -231,4 +239,9 @@ class ConditionCalculateService
     return wind == "ton"
   end
 
+  def to_parent_tumo_message_string(point, wind)
+    if parent?(wind)
+      return point.to_s + " all"
+    end
+  end
 end
