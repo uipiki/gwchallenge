@@ -11,18 +11,16 @@
 
 class ConditionCalculateService
 
-  enum finish_type: {tumo: "tumo", ron: "ron"}
+  @@finish_type = {tumo: "tumo", ron: "ron"}
 
-  def init(point_status, stage_count, deposit, existing_total, others_top_point)
+  def initialize(point_status, stage_count, deposit, existing_total, others_top_point)
     @child_deagari_points = [1000, 1300, 1600, 2000, 2300,
                              2600, 3200, 3900, 4500, 5200, 6400, 8000, 12000, 16000, 24000, 320000]
-    ​
     @child_tumo_points = [{ko: 300, oya: 500}, {ko: 400, oya: 700},
                           {ko: 500, oya: 1000}, {ko: 600, oya: 1200}, {ko: 700, oya: 1300},
                           {ko: 800, oya: 1600}, {ko: 1000, oya: 2000}, {ko: 1200, oya: 2300},
                           {ko: 1300, oya: 2600}, {ko: 1600, oya: 3200}, {ko: 2000, oya: 4000},
                           {ko: 3000, oya: 6000}, {ko: 6000, oya: 12000}, {ko: 8000, oya: 16000}]
-    ​
     @oya_deagari_points = [1500, 2000, 2400, 2900, 3400, 4800, 5800, 6800, 7700, 9600, 12000, 18000, 24000, 36000, 48000]
     @oya_tumo_points = [500, 700, 800, 1000, 1200, 1300, 1600, 2000, 2300, 2600, 3200, 4000, 6000, 8000, 12000, 16000]
     @point_status = point_status
@@ -40,18 +38,17 @@ class ConditionCalculateService
     end
   end
 
-  ​
-#
-# ツモの時の条件を返す
-#
+  #
+  # ツモの時の条件を返す
+  #
   def get_tumo_condition(wind, status, deposit, stage_count, exisiting_total)
-    hand_points = get_hand_points(wind, finish_types.tumo)
+    hand_points = get_hand_points(wind, @finish_type.tumo)
     if parent?(wind)
       hand_points.each do |point|
         move_point = point + stage_count * 100
         tumoed_status = tumo_by_parent(status, move_point, deposit)
         if totaltop?(wind, tumoed_status, exisiting_total)
-          write_message(wind, others_wind, point, finish_types.tumo)
+          write_message(wind, others_wind, point, @finish_type.tumo)
           break
         end
       end
@@ -59,14 +56,12 @@ class ConditionCalculateService
       hand_points.each do |point_hash|
         tumoed_status = tumo_by_child(wind, status, stage_count, deposit, point_hash)
         if totaltop?(wind, tumoed_status, exisiting_total)
-          write_message(wind, others_wind, point, FINISH_TYPE::TUMO)
+          write_message(wind, others_wind, point, @finish_type::TUMO)
           break
         end
       end
     end
   end
-
-  ​
 
   def tumo_by_parent(status, move_point, deposit)
     result = {}
@@ -79,8 +74,6 @@ class ConditionCalculateService
     end
     return result
   end
-
-  ​
 
   def tumo_by_child(wind, status, stage_count, deposit, point_hash)
     result = {}
@@ -98,17 +91,16 @@ class ConditionCalculateService
     return result
   end
 
-  ​
-#
-# ロンの時の条件を返す
-# @param [String] wind 自風
-# @param [Integer] status 状況
-# @param [Integer] deposit 供託
-# @param [Integer] stage_count 本場
-# @param [Map] 上がる前のトータルポイント状況
-#
+  #
+  # ロンの時の条件を返す
+  # @param [String] wind 自風
+  # @param [Integer] status 状況
+  # @param [Integer] deposit 供託
+  # @param [Integer] stage_count 本場
+  # @param [Map] 上がる前のトータルポイント状況
+  #
   def get_ron_condition(wind, status, deposit, stage_count, exisiting_total)
-    hand_points = get_hand_points(wind, finish_types.ron)
+    hand_points = get_hand_points(wind, @finish_type.ron)
     # 他家の出上がり条件探すためのループ
     status.each do |others_wind, others_point|
       # 自分にロンはできないので次へ
@@ -120,18 +112,14 @@ class ConditionCalculateService
         move_point = point + (300 * stage_count)
         ronned_status = after_ron_status(wind, others_wind, status, move_point, deposit)
         if totaltop?(wind, ronned_status, exisiting_total)
-          write_message(wind, others_wind, point, type)
+          # write_message(wind, others_wind, point, type)
         end
       end
     end
   end
 
-  ​
-
   def write_message(wind, others_wind, point, type)
   end
-
-  ​
 
   def after_ron_status(wind, others_wind, status, move_point, deposit)
     my_point = status[wind] + move_point + deposit
@@ -141,15 +129,11 @@ class ConditionCalculateService
     return status
   end
 
-  ​
-
   def totaltop?(wind, ronned_status, exisiting_total)
     game_point = calc_uma_oka(ronned_status)
     finished_total = sum_point(game_point, exisiting_total)
     return is_top?(wind, finished_total)
   end
-
-  ​
 
   def calc_uma_oka(ronned_status)
     result = {}
@@ -160,8 +144,6 @@ class ConditionCalculateService
     return result
   end
 
-  ​
-
   def sum_point(game_point, exisiting_total)
     result = {}
     game_point.each do |wind, point|
@@ -170,10 +152,9 @@ class ConditionCalculateService
     return result
   end
 
-  ​
-# パラメタの風がトップかどうか返す
-# @param [String] wind
-# @param [Hash<String, Integer>] finished_total
+  # パラメタの風がトップかどうか返す
+  # @param [String] wind
+  # @param [Hash<String, Integer>] finished_total
   def is_top?(wind, finished_total)
     my_point = finished_total[wind]
     rank = finished_total.values.sort.index(my_point)
@@ -183,10 +164,9 @@ class ConditionCalculateService
     return false
   end
 
-  ​
-# ウマオカを返す
-# @param [String] wind
-# @param [Map<String, Integer>] ronned_status
+  # ウマオカを返す
+  # @param [String] wind
+  # @param [Map<String, Integer>] ronned_status
   def get_uma_oka(wind, ronned_status)
     my_point = ronned_status[wind]
     points = ronned_status.values
@@ -196,8 +176,6 @@ class ConditionCalculateService
     umaoka_point = umaoka(rank, duplicates)
     return umaoka_point
   end
-
-  ​
 
   def umaoka(rank, dupulicated_rank_num)
     if rank == 1
@@ -229,27 +207,25 @@ class ConditionCalculateService
     end
   end
 
-#
-# 出上がりのリストを返します。
-# @return [Array[Integer]]
-#
+  #
+  # 出上がりのリストを返します。
+  # @return [Array[Integer]]
+  #
   def get_hand_points(wind, finish_type)
     if parent?(wind)
-      if finish_type == finish_types.ron
+      if finish_type == @finish_type.ron
         return @oya_deagari_points
       else
         return @oya_tumo_points
       end
     else
-      if finish_type == finish_types.ron
+      if finish_type == @finish_type.ron
         return @child_deagari_points
       else
         return @child_tumo_points
       end
     end
   end
-
-  ​
 
   def parent?(wind)
     return wind == "ton"

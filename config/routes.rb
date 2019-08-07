@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get 'score/:group_id/list' => 'score#list'
 
-  get 'condition/index' => 'condition/index'
+  get 'condition/information' => 'condition/information'
   get 'condition/calc' => 'condition/calc'
 
 
