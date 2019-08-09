@@ -11,11 +11,11 @@
 
 class ConditionCalculateService
 
-  @@finish_type = {tumo: "tumo", ron: "ron"}
 
   def initialize(point_status, stage_count, deposit, existing_total, others_top_point)
+    @finish_type = {tumo: "tumo", ron: "ron"}
     @child_deagari_points = [1000, 1300, 1600, 2000, 2300,
-                             2600, 3200, 3900, 4500, 5200, 6400, 8000, 12000, 16000, 24000, 320000]
+                             2600, 3200, 3900, 4500, 5200, 6400, 8000, 12000, 16000, 24000, 32000]
     @child_tumo_points = [{ko: 300, oya: 500}, {ko: 400, oya: 700},
                           {ko: 500, oya: 1000}, {ko: 600, oya: 1200}, {ko: 700, oya: 1300},
                           {ko: 800, oya: 1600}, {ko: 1000, oya: 2000}, {ko: 1200, oya: 2300},
@@ -24,10 +24,10 @@ class ConditionCalculateService
     @oya_deagari_points = [1500, 2000, 2400, 2900, 3400, 4800, 5800, 6800, 7700, 9600, 12000, 18000, 24000, 36000, 48000]
     @oya_tumo_points = [500, 700, 800, 1000, 1200, 1300, 1600, 2000, 2300, 2600, 3200, 4000, 6000, 8000, 12000, 16000]
     @point_status = point_status
-    @stage_count = stage_count
-    @deposit = deposit
+    @stage_count = stage_count.to_i
+    @deposit = deposit.to_i
     @existing_total = existing_total
-    @others_top_point = others_top_point
+    @others_top_point = others_top_point.to_i
   end
 
 
@@ -35,8 +35,8 @@ class ConditionCalculateService
     ron_conditions = {}
     tumo_conditions = {}
     @point_status.each do |wind_type, point|
-      ron_conditions[wind_type] = get_ron_condition(wind_type, @point_status, @deposit, @stage_count, @exisiting_total)
-      tumo_conditions[wind_type] = get_tumo_condition(wind_type, @point_status, @deposit, @stage_count, @exisiting_total)
+      ron_conditions[wind_type] = get_ron_condition(wind_type, @point_status, @deposit, @stage_count, @existing_total)
+      tumo_conditions[wind_type] = get_tumo_condition(wind_type, @point_status, @deposit, @stage_count, @existing_total)
     end
     return {
         ron: ron_conditions,
@@ -47,13 +47,16 @@ class ConditionCalculateService
   #
   # ツモの時の条件を返す
   #
-  def get_tumo_condition(wind, status, deposit, stage_count, exisiting_total)
-    hand_points = get_hand_points(wind, @finish_type.tumo)
-    if parent?(wind)
+  def get_tumo_condition(wind, status, deposit, stage_count, existing_total)
+    hand_points = get_hand_points(wind, @finish_type[:tumo])
+    if parent?(wind.to_s)
+      p "$ " * 50
       hand_points.each do |point|
         move_point = point + stage_count * 100
         tumoed_status = tumo_by_parent(status, move_point, deposit)
-        if totaltop?(wind, tumoed_status, exisiting_total)
+        p status
+        p tumoed_status
+        if totaltop?(wind, tumoed_status, existing_total)
           return point.to_s + " all"
           break
         end
@@ -61,9 +64,8 @@ class ConditionCalculateService
     else
       hand_points.each do |point_hash|
         tumoed_status = tumo_by_child(wind, status, stage_count, deposit, point_hash)
-        if totaltop?(wind, tumoed_status, exisiting_total)
-          write_message(wind, others_wind, point, @finish_type::TUMO)
-          return point_hash.ko.to_s + "-" + point_hash.oya.to_s
+        if totaltop?(wind, tumoed_status, existing_total)
+          return point_hash[:ko].to_s + "-" + point_hash[:oya].to_s
           break
         end
       end
@@ -73,8 +75,9 @@ class ConditionCalculateService
   def tumo_by_parent(status, move_point, deposit)
     result = {}
     status.each do |wind, point|
-      if parent?(wind)
-        result[wind] = status["ton"] + deposit + move_point * 3
+      if parent?(wind.to_s)
+        # binding.pry
+        result[wind] = status[:ton] + deposit + move_point * 3
       else
         result[wind] = status[wind] - move_point
       end
@@ -86,13 +89,14 @@ class ConditionCalculateService
     result = {}
     status.each do |others_wind, point|
       if others_wind == wind
+        # binding.pry
         result[others_wind] = status[wind] + deposit + point_hash[:ko] * 2 + point_hash[:oya] + stage_count * 300
         next
       end
       if parent?(others_wind)
-        result[others_wind] = status[others_point] - point_hash[:oya] - stage_count * 100
+        result[others_wind] = status[others_wind] - point_hash[:oya] - stage_count * 100
       else
-        result[others_wind] = status[others_point] - point_hash[:ko] - stage_count * 100
+        result[others_wind] = status[others_wind] - point_hash[:ko] - stage_count * 100
       end
     end
     return result
@@ -107,7 +111,7 @@ class ConditionCalculateService
   # @param [Map<String, Map<String, Integer>>] 上がる前のトータルポイント状況
   #
   def get_ron_condition(wind, status, deposit, stage_count, exisiting_total)
-    hand_points = get_hand_points(wind, @finish_type.ron)
+    hand_points = get_hand_points(wind, @finish_type[:ron])
     result = {}
     conditions = {}
     # 他家の出上がり条件探すためのループ
@@ -122,24 +126,33 @@ class ConditionCalculateService
         ronned_status = after_ron_status(wind, others_wind, status, move_point, deposit)
         if totaltop?(wind, ronned_status, exisiting_total)
           conditions[others_wind] = point
+          break
         end
       end
     end
     result[wind] = conditions
   end
-  
+
 
   def after_ron_status(wind, others_wind, status, move_point, deposit)
+    result = {}
     my_point = status[wind] + move_point + deposit
-    status[wind] = my_point
-    others_point = status[others_point] - move_point
-    status[others_point] = others_point
-    return status
+    others_point = status[others_wind] - move_point
+    status.each do |k, v|
+      if k == wind
+        result[k] = my_point
+      elsif k == others_wind
+        result[k] = others_point
+      else
+        result[k] = v
+      end
+    end
+    return result
   end
 
-  def totaltop?(wind, ronned_status, exisiting_total)
+  def totaltop?(wind, ronned_status, existing_total)
     game_point = calc_uma_oka(ronned_status)
-    finished_total = sum_point(game_point, exisiting_total)
+    finished_total = sum_point(game_point, existing_total)
     return is_top?(wind, finished_total)
   end
 
@@ -147,15 +160,18 @@ class ConditionCalculateService
     result = {}
     ronned_status.each do |wind, point|
       umaoka = get_uma_oka(wind, ronned_status)
-      result[wind] = (point + umaoka) / 100
+      result[wind] = (point - 30000 + umaoka) / 1000
     end
+    # p "####" * 20
+    # p ronned_status
+    # p result
     return result
   end
 
-  def sum_point(game_point, exisiting_total)
+  def sum_point(game_point, existing_total)
     result = {}
     game_point.each do |wind, point|
-      result[wind] = point + exisiting_total[wind]
+      result[wind] = point + existing_total[wind]
     end
     return result
   end
@@ -165,8 +181,8 @@ class ConditionCalculateService
   # @param [Hash<String, Integer>] finished_total
   def is_top?(wind, finished_total)
     my_point = finished_total[wind]
-    rank = finished_total.values.sort.index(my_point)
-    if rank == 0 and my_point > @others_table_top_point
+    rank = finished_total.values.sort.reverse.index(my_point)
+    if rank == 0 and my_point > @others_top_point
       return true
     end
     return false
@@ -178,10 +194,11 @@ class ConditionCalculateService
   def get_uma_oka(wind, ronned_status)
     my_point = ronned_status[wind]
     points = ronned_status.values
-    sorted_point = points.sort
-    rank = sorted_point.index(my_point)
+    sorted_point = points.sort.reverse
+    rank = sorted_point.index(my_point) + 1
     duplicates = points.group_by(&:itself).map {|k, v| [k, v.count]}.to_h[my_point]
     umaoka_point = umaoka(rank, duplicates)
+
     return umaoka_point
   end
 
@@ -220,14 +237,14 @@ class ConditionCalculateService
   # @return [Array[Integer]]
   #
   def get_hand_points(wind, finish_type)
-    if parent?(wind)
-      if finish_type == @finish_type.ron
+    if parent?(wind.to_s)
+      if finish_type == @finish_type[:ron]
         return @oya_deagari_points
       else
         return @oya_tumo_points
       end
     else
-      if finish_type == @finish_type.ron
+      if finish_type == @finish_type[:ron]
         return @child_deagari_points
       else
         return @child_tumo_points

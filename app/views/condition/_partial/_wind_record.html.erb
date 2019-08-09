@@ -1,11 +1,13 @@
 <tr>
   <td>
-    <%= wind_caption %>
+    <%= wind_caption %>:<%= point %>
   </td>
   <td>
     <%= tumo_condition %>
   </td>
   <td>
-    <%= ron_condition %>
+    <% ron_condition.each do |wind, point| %>
+      <%= to_caption(wind) %>:<%= point %>
+    <% end %>
   </td>
 </tr>

@@ -4,10 +4,22 @@
       <label class="uk-form-label uk-width-1-1"><%= wind_caption %></label>
     </div>
     <div class="uk-width-1-2@s">
-      <input form="conditions" class="uk-input" type="number" placeholder="現在の持ち点" name="<%= wind %>_point">
+      <input form="conditions"
+             value="25000"
+             step="100"
+             class="uk-input"
+             type="number"
+             placeholder="現在の持ち点"
+             name="<%= wind %>_point">
     </div>
     <div class="uk-width-1-2@s">
-      <input form="conditions" class="uk-input" type="number" placeholder="総合ポイント" name="<%= wind %>_total">
+      <input form="conditions"
+             value="0"
+             step="0.1"
+             class="uk-input"
+             type="number"
+             placeholder="総合ポイント"
+             name="<%= wind %>_total">
     </div>
   </form>
 </div>

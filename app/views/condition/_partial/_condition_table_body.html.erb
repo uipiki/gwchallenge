@@ -1,6 +1,22 @@
 <tbody>
-<%= render :partial => 'condition/_partial/wind_record', locals: {tumo_condition: "4000 all", ron_condition: "ton", wind_caption: "東"} %>
-<%= render :partial => 'condition/_partial/wind_record', locals: {tumo_condition: "3000-6000", ron_condition: "ton", wind_caption: "南"} %>
-<%= render :partial => 'condition/_partial/wind_record', locals: {tumo_condition: "2000-4000", ron_condition: "ton", wind_caption: "西"} %>
-<%= render :partial => 'condition/_partial/wind_record', locals: {tumo_condition: "300-500", ron_condition: "ton", wind_caption: "北"} %>
+<%= render :partial => 'condition/_partial/wind_record',
+           locals: {point: point_status[:ton],
+                    tumo_condition: condition[:tumo][:ton],
+                    ron_condition: condition[:ron][:ton],
+                    wind_caption: "東"} %>
+<%= render :partial => 'condition/_partial/wind_record',
+           locals: {point: point_status[:nan],
+                    tumo_condition: condition[:tumo][:nan],
+                    ron_condition: condition[:ron][:nan],
+                    wind_caption: "南"} %>
+<%= render :partial => 'condition/_partial/wind_record',
+           locals: {point: point_status[:sya],
+                    tumo_condition: condition[:tumo][:sya],
+                    ron_condition: condition[:ron][:sya],
+                    wind_caption: "西"} %>
+<%= render :partial => 'condition/_partial/wind_record',
+           locals: {point: point_status[:pe],
+                    tumo_condition: condition[:tumo][:pe],
+                    ron_condition: condition[:ron][:pe],
+                    wind_caption: "北"} %>
 </tbody>
