@@ -17,9 +17,9 @@ class ConditionController < ApplicationController
                                                params[:deposit],
                                                existing_total,
                                                params[:others_top_point])
-    # def initialize(point_status, stage_count, deposit, existing_total, others_top_point)
     @condition = calclatour.require_conditions
     @point_status = point_status
+    @existing_total = existing_total
     render 'condition/condition'
   end
 

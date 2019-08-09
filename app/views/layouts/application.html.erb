@@ -2,7 +2,7 @@
 <html>
 <head>
   <%= render :partial => 'layouts/shared/script' %>
-  <title>Gwchallenge</title>
+  <title>条件計算</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <% if controller.controller_name != 'session' %>
@@ -12,7 +12,4 @@
 <body>
 <%= yield %>
 </body>
-<% if controller.controller_name != 'session' %>
-  <%= render :partial => 'layouts/shared/footer' %>
-<% end %>
 </html>

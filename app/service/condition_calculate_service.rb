@@ -38,10 +38,26 @@ class ConditionCalculateService
       ron_conditions[wind_type] = get_ron_condition(wind_type, @point_status, @deposit, @stage_count, @existing_total)
       tumo_conditions[wind_type] = get_tumo_condition(wind_type, @point_status, @deposit, @stage_count, @existing_total)
     end
+    # get_ryukyoku_condition(@point_status, @deposit, @existing_total)
     return {
         ron: ron_conditions,
         tumo: tumo_conditions
     }
+  end
+
+  # 伏せられるかの条件
+  def get_ryukyoku_condition(point_status, deposit, existing_total)
+    # nan, sya, pe
+    [:nan, :sya, :pe].each do |tenpai_wind|
+      tmp_result[:ton] = point_status[:ton] - 1000
+      tmp_result[:ton] = point_status[:nan] - 1000
+      tmp_result[:ton] = point_status[:sya] - 1000
+      tmp_result[:ton] = point_status[:pe] - 1000
+
+    end
+
+    # nan-sya, nan-pe, sya-pe
+    # nan-sya-pe
   end
 
   #
@@ -50,14 +66,15 @@ class ConditionCalculateService
   def get_tumo_condition(wind, status, deposit, stage_count, existing_total)
     hand_points = get_hand_points(wind, @finish_type[:tumo])
     if parent?(wind.to_s)
-      p "$ " * 50
       hand_points.each do |point|
         move_point = point + stage_count * 100
         tumoed_status = tumo_by_parent(status, move_point, deposit)
-        p status
-        p tumoed_status
         if totaltop?(wind, tumoed_status, existing_total)
-          return point.to_s + " all"
+          result = {}
+          result[:message] = point.to_s + " all"
+          result[:status] = tumoed_status
+          result[:game_point] = calc_uma_oka(tumoed_status)
+          return result
           break
         end
       end
@@ -65,7 +82,11 @@ class ConditionCalculateService
       hand_points.each do |point_hash|
         tumoed_status = tumo_by_child(wind, status, stage_count, deposit, point_hash)
         if totaltop?(wind, tumoed_status, existing_total)
-          return point_hash[:ko].to_s + "-" + point_hash[:oya].to_s
+          result = {}
+          result[:message] = point_hash[:ko].to_s + "-" + point_hash[:oya].to_s
+          result[:status] = tumoed_status
+          result[:game_point] = calc_uma_oka(tumoed_status)
+          return result
           break
         end
       end
@@ -76,7 +97,6 @@ class ConditionCalculateService
     result = {}
     status.each do |wind, point|
       if parent?(wind.to_s)
-        # binding.pry
         result[wind] = status[:ton] + deposit + move_point * 3
       else
         result[wind] = status[wind] - move_point
@@ -89,11 +109,10 @@ class ConditionCalculateService
     result = {}
     status.each do |others_wind, point|
       if others_wind == wind
-        # binding.pry
         result[others_wind] = status[wind] + deposit + point_hash[:ko] * 2 + point_hash[:oya] + stage_count * 300
         next
       end
-      if parent?(others_wind)
+      if parent?(others_wind.to_s)
         result[others_wind] = status[others_wind] - point_hash[:oya] - stage_count * 100
       else
         result[others_wind] = status[others_wind] - point_hash[:ko] - stage_count * 100
@@ -114,6 +133,7 @@ class ConditionCalculateService
     hand_points = get_hand_points(wind, @finish_type[:ron])
     result = {}
     conditions = {}
+    conditionss = {}
     # 他家の出上がり条件探すためのループ
     status.each do |others_wind, others_point|
       # 自分にロンはできないので次へ
@@ -126,11 +146,15 @@ class ConditionCalculateService
         ronned_status = after_ron_status(wind, others_wind, status, move_point, deposit)
         if totaltop?(wind, ronned_status, exisiting_total)
           conditions[others_wind] = point
+          conditionss[others_wind] = {}
+          conditionss[others_wind][:point] = point
+          conditionss[others_wind][:status] = ronned_status
+          conditionss[others_wind][:game_point] = calc_uma_oka(ronned_status)
           break
         end
       end
     end
-    result[wind] = conditions
+    result[wind] = conditionss
   end
 
 
@@ -150,8 +174,8 @@ class ConditionCalculateService
     return result
   end
 
-  def totaltop?(wind, ronned_status, existing_total)
-    game_point = calc_uma_oka(ronned_status)
+  def totaltop?(wind, current_status, existing_total)
+    game_point = calc_uma_oka(current_status)
     finished_total = sum_point(game_point, existing_total)
     return is_top?(wind, finished_total)
   end
@@ -160,11 +184,8 @@ class ConditionCalculateService
     result = {}
     ronned_status.each do |wind, point|
       umaoka = get_uma_oka(wind, ronned_status)
-      result[wind] = (point - 30000 + umaoka) / 1000
+      result[wind] = (point - 30000 + umaoka) / 1000.to_d
     end
-    # p "####" * 20
-    # p ronned_status
-    # p result
     return result
   end
 

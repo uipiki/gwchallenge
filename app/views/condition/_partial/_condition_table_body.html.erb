@@ -1,21 +1,25 @@
 <tbody>
 <%= render :partial => 'condition/_partial/wind_record',
            locals: {point: point_status[:ton],
+                    existing_total: existing_total,
                     tumo_condition: condition[:tumo][:ton],
                     ron_condition: condition[:ron][:ton],
                     wind_caption: "東"} %>
 <%= render :partial => 'condition/_partial/wind_record',
            locals: {point: point_status[:nan],
+                    existing_total: existing_total,
                     tumo_condition: condition[:tumo][:nan],
                     ron_condition: condition[:ron][:nan],
                     wind_caption: "南"} %>
 <%= render :partial => 'condition/_partial/wind_record',
            locals: {point: point_status[:sya],
+                    existing_total: existing_total,
                     tumo_condition: condition[:tumo][:sya],
                     ron_condition: condition[:ron][:sya],
                     wind_caption: "西"} %>
 <%= render :partial => 'condition/_partial/wind_record',
            locals: {point: point_status[:pe],
+                    existing_total: existing_total,
                     tumo_condition: condition[:tumo][:pe],
                     ron_condition: condition[:ron][:pe],
                     wind_caption: "北"} %>

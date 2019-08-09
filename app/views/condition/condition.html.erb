@@ -2,6 +2,6 @@
   <table class="uk-table uk-table-middle uk-table-divider">
     <%= render :partial => 'condition/_partial/condition_table_header' %>
     <%= render :partial => 'condition/_partial/condition_table_body',
-               locals: {condition: @condition, point_status: @point_status} %>
+               locals: {condition: @condition, point_status: @point_status, existing_total: @existing_total} %>
   </table>
 </div>

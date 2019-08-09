@@ -1,13 +1,56 @@
 <tr>
   <td>
-    <%= wind_caption %>:<%= point %>
+    <%= wind_caption %>
   </td>
   <td>
-    <%= tumo_condition %>
+    <%= tumo_condition[:message] %>
+    <div>
+      東: <%= tumo_condition[:status][:ton] %> <%= tumo_condition[:game_point][:ton] %>pt
+      +
+      <%= existing_total[:ton] %>pt =
+      <%= tumo_condition[:game_point][:ton] + existing_total[:ton] %>pt
+    </div>
+    <div>
+      南: <%= tumo_condition[:status][:nan] %> <%= tumo_condition[:game_point][:nan] %>pt
+      +
+      <%= existing_total[:nan] %>pt =
+      <%= tumo_condition[:game_point][:nan] + existing_total[:nan] %>pt
+    </div>
+    <div>
+      西: <%= tumo_condition[:status][:sya] %> <%= tumo_condition[:game_point][:sya] %>pt
+      +
+      <%= existing_total[:sya] %>pt =
+      <%= tumo_condition[:game_point][:sya] + existing_total[:sya] %>pt
+    </div>
+    <div>
+      北: <%= tumo_condition[:status][:pe] %> <%= tumo_condition[:game_point][:pe] %>pt
+      +
+      <%= existing_total[:pe] %>pt =
+      <%= tumo_condition[:game_point][:pe] + existing_total[:pe] %>pt
+    </div>
   </td>
   <td>
-    <% ron_condition.each do |wind, point| %>
-      <%= to_caption(wind) %>:<%= point %>
+    <% ron_condition.each do |wind, hash| %>
+      <%= to_caption(wind) %> => <%= hash[:point] %>
+      <div>
+        東: <%= hash[:status][:ton] %> <%= hash[:game_point][:ton] %>pt
+        + <%= existing_total[:ton] %>pt = <%= hash[:game_point][:ton] + existing_total[:ton] %>pt
+      </div>
+      <div>
+        南: <%= hash[:status][:nan] %> <%= hash[:game_point][:nan] %>pt
+        + <%= existing_total[:nan] %>pt = <%= hash[:game_point][:nan] + existing_total[:nan] %>pt
+      </div>
+      <div>
+        西: <%= hash[:status][:sya] %> <%= hash[:game_point][:sya] %>pt
+        + <%= existing_total[:sya] %>pt = <%= hash[:game_point][:sya] + existing_total[:sya] %>pt
+      </div>
+      <div>
+        北: <%= hash[:status][:pe] %> <%= hash[:game_point][:pe] %>pt
+        + <%= existing_total[:pe] %>pt = <%= hash[:game_point][:pe] + existing_total[:pe] %>pt
+      </div>
+      <div>
+        <br>
+      </div>
     <% end %>
   </td>
 </tr>
