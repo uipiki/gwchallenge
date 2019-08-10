@@ -1,9 +1,9 @@
 <tr>
   <td>
-    <%= wind_caption %>
+    <%= wind_caption %> <%= point %>
   </td>
   <td>
-    <%= tumo_condition[:message] %>
+    <strong><%= tumo_condition[:message] %></strong>
     <div>
       東: <%= tumo_condition[:status][:ton] %> <%= tumo_condition[:game_point][:ton] %>pt
       +
@@ -31,7 +31,7 @@
   </td>
   <td>
     <% ron_condition.each do |wind, hash| %>
-      <%= to_caption(wind) %> => <%= hash[:point] %>
+      <strong><%= to_caption(wind) %> => <%= hash[:point] %></strong>
       <div>
         東: <%= hash[:status][:ton] %> <%= hash[:game_point][:ton] %>pt
         + <%= existing_total[:ton] %>pt = <%= hash[:game_point][:ton] + existing_total[:ton] %>pt
@@ -51,6 +51,85 @@
       <div>
         <br>
       </div>
+    <% end %>
+  </td>
+  <td>
+    <% if wind_caption == "東" %>
+      <% if ryukyoku[:hitori_noten].present? %>
+        <div>
+          <strong>一人ノーテン OK</strong>
+<!--          <div>-->
+<!--            東: <%#= ryukyoku[:hitori_noten][:ton] %> <%#= ryukyoku[:hitori_noten][:game_point][:ton] %>pt-->
+<!--            + <%#= existing_total[:ton] %>pt = <%#= ryukyoku[:hitori_noten][:game_point][:ton] + existing_total[:ton] %>pt-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            南: <%#= ryukyoku[:hitori_noten][:nan] %> <%#= ryukyoku[:hitori_noten][:game_point][:nan] %>pt-->
+<!--            + <%#= existing_total[:nan] %>pt = <%#= ryukyoku[:hitori_noten][:game_point][:nan] + existing_total[:nan] %>pt-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            西: <%#= ryukyoku[:hitori_noten][:sya] %> <%#= ryukyoku[:hitori_noten][:game_point][:sya] %>pt-->
+<!--            + <%#= existing_total[:sya] %>pt = <%#= ryukyoku[:hitori_noten][:game_point][:sya] + existing_total[:sya] %>pt-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            北: <%#= ryukyoku[:hitori_noten][:pe] %> <%#= ryukyoku[:hitori_noten][:game_point][:pe] %>pt-->
+<!--            + <%#= existing_total[:pe] %>pt = <%#= ryukyoku[:hitori_noten][:game_point][:pe] + existing_total[:pe] %>pt-->
+<!--          </div>-->
+        </div>
+      <% end %>
+      <br>
+      <% if ryukyoku[:futari_noten].present? %>
+        <div>
+          <strong>二人ノーテンOK</strong>
+          <% ryukyoku[:futari_noten].each do |noten_wind, game_result| %>
+            <div>
+              東, <%= to_caption(noten_wind) %>
+<!--              <div>-->
+<!--                東: <%#= game_result[:ton] %> <%#= game_result[:game_point][:ton] %>pt-->
+<!--                + <%#= existing_total[:ton] %>pt = <%#= game_result[:game_point][:ton] + existing_total[:ton] %>pt-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                南: <%#= game_result[:nan] %> <%#= game_result[:game_point][:nan] %>pt-->
+<!--                + <%#= existing_total[:nan] %>pt = <%#= game_result[:game_point][:nan] + existing_total[:nan] %>pt-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                西: <%#= game_result[:sya] %> <%#= game_result[:game_point][:sya] %>pt-->
+<!--                + <%#= existing_total[:sya] %>pt = <%#= game_result[:game_point][:sya] + existing_total[:sya] %>pt-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                北: <%#= game_result[:pe] %> <%#= game_result[:game_point][:pe] %>pt-->
+<!--                + <%#= existing_total[:pe] %>pt = <%#= game_result[:game_point][:pe] + existing_total[:pe] %>pt-->
+<!--              </div>-->
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <br>
+      <% if ryukyoku[:hitori_tenpai] %>
+        <div>
+          <strong>一人テンパイOK</strong>
+          <% ryukyoku[:hitori_tenpai].each do |tenpai_wind, game_result| %>
+          <div>
+            <%= to_caption(tenpai_wind) %>
+<!--            <div>-->
+<!--              東: <%#= game_result[:ton] %> <%#= game_result[:game_point][:ton] %>pt-->
+<!--              + <%#= existing_total[:ton] %>pt = <%#= game_result[:game_point][:ton] + existing_total[:ton] %>pt-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              南: <%#= game_result[:nan] %> <%#= game_result[:game_point][:nan] %>pt-->
+<!--              + <%#= existing_total[:nan] %>pt = <%#= game_result[:game_point][:nan] + existing_total[:nan] %>pt-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              西: <%#= game_result[:sya] %> <%#= game_result[:game_point][:sya] %>pt-->
+<!--              + <%#= existing_total[:sya] %>pt = <%#= game_result[:game_point][:sya] + existing_total[:sya] %>pt-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              北: <%#= game_result[:pe] %> <%#= game_result[:game_point][:pe] %>pt-->
+<!--              + <%#= existing_total[:pe] %>pt = <%#= game_result[:game_point][:pe] + existing_total[:pe] %>pt-->
+<!--            </div>-->
+          </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </td>
 </tr>

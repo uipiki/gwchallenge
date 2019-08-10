@@ -38,26 +38,121 @@ class ConditionCalculateService
       ron_conditions[wind_type] = get_ron_condition(wind_type, @point_status, @deposit, @stage_count, @existing_total)
       tumo_conditions[wind_type] = get_tumo_condition(wind_type, @point_status, @deposit, @stage_count, @existing_total)
     end
-    # get_ryukyoku_condition(@point_status, @deposit, @existing_total)
+    noten_condition = get_ryukyoku_condition(@point_status, @deposit, @existing_total)
     return {
         ron: ron_conditions,
-        tumo: tumo_conditions
+        tumo: tumo_conditions,
+        ryukyoku: noten_condition
     }
   end
 
-  # 伏せられるかの条件
+  # 伏せられるかの条件(親のみ)
   def get_ryukyoku_condition(point_status, deposit, existing_total)
-    # nan, sya, pe
-    [:nan, :sya, :pe].each do |tenpai_wind|
-      tmp_result[:ton] = point_status[:ton] - 1000
-      tmp_result[:ton] = point_status[:nan] - 1000
-      tmp_result[:ton] = point_status[:sya] - 1000
-      tmp_result[:ton] = point_status[:pe] - 1000
-
+    result = {}
+    noten_result = hitori_noten_calc(:ton, point_status, deposit)
+    if totaltop?(:ton, noten_result, existing_total)
+      result[:hitori_noten] = noten_result
+      result[:hitori_noten][:game_point] = calc_uma_oka(noten_result)
     end
+    futari_noten_results = futari_noten_calc(:ton, point_status, deposit)
+    futari_noten_results.each do |noten_wind, game_result|
+      if totaltop?(:ton, game_result, existing_total)
+        unless result[:futari_noten].present?
+          result[:futari_noten] = {}
+        end
+        result[:futari_noten][noten_wind] = game_result
+        result[:futari_noten][noten_wind][:game_point] = calc_uma_oka(game_result)
+      end
+    end
+    hitori_tenpai_results = hitori_tenpai_calc(:ton, point_status, deposit)
+    hitori_tenpai_results.each do |tenpai_wind, game_result|
+      if totaltop?(:ton, game_result, existing_total)
+        unless result[:hitori_tenpai].present?
+          result[:hitori_tenpai] = {}
+        end
+        result[:hitori_tenpai][tenpai_wind] = game_result
+        result[:hitori_tenpai][tenpai_wind][:game_point] = calc_uma_oka(game_result)
+      end
+    end
+    return result
+  end
 
-    # nan-sya, nan-pe, sya-pe
-    # nan-sya-pe
+  def hitori_tenpai_calc(wind, status, deposit)
+    tenpai_results = {}
+    tenpai_result = {}
+    [:nan, :sya, :pe].each do |tenpai_wind|
+      status.each do |calced_wind, point|
+        if tenpai_wind == calced_wind
+          tenpai_result[calced_wind] = point + 3000
+        else
+          tenpai_result[calced_wind] = point - 1000
+        end
+      end
+      tenpai_results[tenpai_wind] = distribute_deposit(tenpai_result, deposit)
+    end
+    return tenpai_results
+  end
+
+  def futari_noten_calc(wind, status, deposit)
+    noten_results = {}
+    noten_result = {}
+    [:nan, :sya, :pe].each do |noten_wind|
+      status.each do |calced_wind, point|
+        if wind == calced_wind || noten_wind == calced_wind
+          noten_result[calced_wind] = point - 1500
+        else
+          noten_result[calced_wind] = point + 1500
+        end
+      end
+      noten_results[noten_wind] = distribute_deposit(noten_result, deposit)
+    end
+    return noten_results
+  end
+
+  def hitori_noten_calc(wind, status, deposit)
+    noten_result = {}
+    status.each do |calcled_wind, point|
+      if wind == calcled_wind
+        noten_result[calcled_wind] = point - 3000
+      else
+        noten_result[calcled_wind] = point + 1000
+      end
+    end
+    result = distribute_deposit(noten_result, deposit)
+    return result
+  end
+
+  def distribute_deposit(noten_result, deposit)
+    result = {}
+    noten_result.each do |result_wind, result_point|
+      rank = noten_result.values.sort.reverse.index(result_point)
+      same_rank = noten_result.values.count(result_point)
+      if rank == 0
+        result[result_wind] = result_point + split_deposit(result_wind, same_rank, deposit)
+      else
+        result[result_wind] = result_point
+      end
+    end
+    return result
+  end
+
+  def split_deposit(wind, same_rank, deposit)
+    if same_rank == 1
+      return deposit
+    end
+    if same_rank == 2
+      return deposit / 2.to_d
+    end
+    if same_rank == 3
+      if deposit % 3 == 0
+        return deposit / 3.to_d
+      end
+      if wind == :nan
+        return (deposit - deposit / 100 / 3.floor * 100 * 2).to_d
+      else
+        return (deposit / 100 / 3.floor * 100).to_d
+      end
+    end
   end
 
   #
