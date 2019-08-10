@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81dcadcd-477f-49ec-95ee-a2d11ad83c2b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/condition/_partial/_wind_component.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/condition/_partial/_wind_component.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -32,7 +31,7 @@
         <counts>
           <entry key="Gemfile" value="4" />
           <entry key="css" value="2" />
-          <entry key="erb" value="62" />
+          <entry key="erb" value="64" />
           <entry key="gitignore" value="1" />
           <entry key="js" value="6" />
           <entry key="rb" value="49" />
@@ -45,7 +44,7 @@
           <entry key="CSS" value="2" />
           <entry key="JavaScript" value="6" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="RHTML" value="62" />
+          <entry key="RHTML" value="64" />
           <entry key="Ruby" value="53" />
           <entry key="SCSS" value="2" />
           <entry key="YAML" value="2" />
@@ -54,7 +53,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Gemfile" value="17" />
-          <entry key="erb" value="3225" />
+          <entry key="erb" value="3323" />
           <entry key="gitignore" value="1" />
           <entry key="js" value="3" />
           <entry key="rb" value="5092" />
@@ -66,7 +65,7 @@
         <counts>
           <entry key="JavaScript" value="3" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="RHTML" value="3225" />
+          <entry key="RHTML" value="3323" />
           <entry key="Ruby" value="5109" />
           <entry key="SCSS" value="1" />
           <entry key="YAML" value="51" />
@@ -76,11 +75,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/condition/_partial/_wind_component.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+            <state relative-caret-position="15">
+              <caret line="1" column="55" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -157,7 +174,6 @@
         <option value="$PROJECT_DIR$/app/views/condition/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/shared/_footer.html.erb" />
         <option value="$PROJECT_DIR$/app/views/condition/information.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb" />
         <option value="$PROJECT_DIR$/spec/services/condition_calculate_service_spec.rb" />
         <option value="$PROJECT_DIR$/db/schema.rb" />
         <option value="$PROJECT_DIR$/config/boot.rb" />
@@ -175,6 +191,7 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/condition/_partial/_wind_component.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb" />
       </list>
     </option>
   </component>
@@ -262,6 +279,14 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gwchallenge" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gwchallenge" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gwchallenge" type="b2602c69:ProjectViewProjectNode" />
@@ -428,12 +453,12 @@
       <workItem from="1556559954964" duration="15178000" />
       <workItem from="1565020736152" duration="4561000" />
       <workItem from="1565190913251" duration="5810000" />
-      <workItem from="1565360504273" duration="21113000" />
+      <workItem from="1565360504273" duration="22287000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47221000" />
+    <option name="totallyTimeSpent" value="48395000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -614,13 +639,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/shared/_footer.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -743,13 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/bundle/ruby/2.5.0/gems/actionview-5.2.3/lib/action_view/helpers/asset_tag_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -773,8 +784,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/condition/_partial/_wind_component.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+        <state relative-caret-position="15">
+          <caret line="1" column="55" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/shared/_header.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
         </state>
       </provider>
     </entry>
