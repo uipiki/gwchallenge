@@ -186,6 +186,7 @@ class ConditionCalculateService
         end
       end
     end
+    return {}
   end
 
   def tumo_by_parent(status, move_point, deposit)
