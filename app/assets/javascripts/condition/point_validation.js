@@ -1,6 +1,6 @@
 $(function() {
     $(".tenbou").focusout(function() {
-        let sum = __sum();
+        var sum = __sum();
         if (__validateTenbo(sum)) {
             __hideMessage();
             return false;
@@ -24,7 +24,7 @@ $(function() {
          * @private
          */
         function __sum() {
-            let val = 0;
+            var val = 0;
             $('.tenbou').each(function(ind, elm) {
                 val += parseInt($(elm).val());
             });
